@@ -1,0 +1,8 @@
+.nav-link.collapsed .arrow-icon {
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease;
+}
+.nav-link:not(.collapsed) .arrow-icon {
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+}
