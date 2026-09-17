@@ -6,3 +6,34 @@
     transform: rotate(0deg);
     transition: transform 0.2s ease;
 }
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1050 !important;
+  height: 56px;
+}
+
+.app-header .dropdown-menu {
+  z-index: 1060 !important;
+}
+
+#mobileSidebar.offcanvas-start {
+  top: 56px !important;
+  height: calc(100vh - 56px) !important;
+}
+
+
+.app-header .nav-link.active {
+  color: #0d6efd !important; 
+  font-weight: 600;
+  border-bottom: 2px solid #0d6efd;
+}
+
+#mobileSidebar .nav-link.active {
+  color: #0d6efd !important;
+  background-color: rgba(13, 110, 253, 0.1) !important; 
+  font-weight: 600;
+  border-left: 4px solid #0d6efd;
+  border-radius: 0 4px 4px 0;
+}

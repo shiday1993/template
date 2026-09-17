@@ -1,30 +1,44 @@
-const routes = {
-    '#home': 'pages/home.html',
-    '#about': 'pages/about.html',
-    '#settings': 'pages/settings.html',
-    '#contact': 'pages/contact.html',
-    '#feature1': 'pages/feature1.html',
-    '#feature2': 'pages/feature2.html'
-};
-
-function loadPage() {
-    let hash = window.location.hash || '#home';
-    let file = routes[hash] || 'pages/404.html';
-
-    q('#main-content').load(file, function(response, status, xhr) {
-        if (status === "error" && file !== '/404.html') {
-            q('#main-content').load('/404.html');
-        }
+q(function() {
+    const $chartDom = q('#salesChart');
+    if (!$chartDom) return;
+    const myChart = echarts.init($chartDom[0]);
+    const option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                'Senin', 'Selasa', 'Rabu', 'Kamis', 
+                'Jumat', 'Sabtu', 'Minggu']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: 'Penjualan',
+                type: 'line',
+                smooth: true,
+                data: [120, 182, 191, 234, 290, 330, 310],
+                areaStyle: {
+                    opacity: 0.15
+                },
+                itemStyle: {
+                    color: '#0d6efd'
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+    q(window).on('resize', function() {
+        myChart.resize();
     });
-    q('.nav-link').removeClass('active');
-    q(`.nav-link[href="${hash}"]`).addClass('active');
-}
-
-q(document).ready(function() {
-    q('[data-include]').each(function() {
-        const file = q(this).data('include');
-        q(this).load(file);
-    });
-    loadPage();
-    q(window).on('hashchange', loadPage); 
 });
